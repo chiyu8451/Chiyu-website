@@ -1,0 +1,28 @@
+'use client'
+import { motion } from 'framer-motion'
+import type { ReactNode } from 'react'
+import { fadeUp, viewportOnce } from './anim'
+
+// 滾動進場包裝：淡入上移，只觸發一次。
+export default function Reveal({
+  children,
+  className,
+  delay = 0,
+}: {
+  children: ReactNode
+  className?: string
+  delay?: number
+}) {
+  return (
+    <motion.div
+      className={className}
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      viewport={viewportOnce}
+      transition={{ delay }}
+    >
+      {children}
+    </motion.div>
+  )
+}

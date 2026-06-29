@@ -1,0 +1,25 @@
+// 後台給編輯選的圖示清單。值對應 Tabler Icons 的名稱，
+// 前台會渲染成 <i class="ti ti-{value}" />。
+export const iconOptions = [
+  { label: '證書 / 認證', value: 'certificate' },
+  { label: '錄影', value: 'video' },
+  { label: '成長曲線', value: 'chart-line' },
+  { label: '文件勾選', value: 'file-check' },
+  { label: '人群', value: 'users' },
+  { label: '學校', value: 'school' },
+  { label: '星星', value: 'star' },
+  { label: '勾選', value: 'check' },
+  { label: '盾牌', value: 'shield-check' },
+  { label: '書本', value: 'book' },
+  { label: '燈泡', value: 'bulb' },
+  { label: '目標', value: 'target' },
+  { label: '獎盃', value: 'trophy' },
+  { label: '對話', value: 'message-circle' },
+  { label: '清單勾選', value: 'checklist' },
+  { label: '人物勾選', value: 'user-check' },
+  { label: '剪貼簿勾選', value: 'clipboard-check' },
+  { label: '麥克風 / 面試', value: 'microphone' },
+  { label: '眼睛 / 督導', value: 'eye' },
+  { label: '日曆', value: 'calendar' },
+  { label: '時鐘', value: 'clock' },
+]
