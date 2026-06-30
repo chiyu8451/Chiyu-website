@@ -1,6 +1,7 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -28,8 +29,9 @@ const dirname = path.dirname(filename)
 // 有設 DATABASE_URI（Postgres）就用 Postgres，否則用本機 SQLite 檔。
 // 本機開發：不用設任何東西，直接 npm run dev 就會建立 qiyu.db。
 // 正式上線：在環境變數設 DATABASE_URI 指向 Supabase。
+// push:true → 第一次部署時自動依程式建立資料表，不需手動跑 migration（小型專案最省事）。
 const db = process.env.DATABASE_URI
-  ? postgresAdapter({ pool: { connectionString: process.env.DATABASE_URI } })
+  ? postgresAdapter({ pool: { connectionString: process.env.DATABASE_URI }, push: true })
   : sqliteAdapter({ client: { url: `file:${path.resolve(dirname, '../qiyu.db')}` } })
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
@@ -73,4 +75,13 @@ export default buildConfig({
   },
   db,
   sharp,
+  // 圖片儲存：有設 BLOB_READ_WRITE_TOKEN（正式上線）就把圖片存到 Vercel Blob 雲端，
+  // 永久保存、不會因為重新部署而消失。本機開發沒設 token → 自動關閉、用本機資料夾即可。
+  plugins: [
+    vercelBlobStorage({
+      enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+      collections: { media: true },
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
+  ],
 })
