@@ -8,6 +8,10 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { Teachers } from './collections/Teachers'
+import { Testimonials } from './collections/Testimonials'
+import { Posts } from './collections/Posts'
+import { Resources } from './collections/Resources'
 import { SiteSettings } from './globals/SiteSettings'
 import { Hero } from './globals/Hero'
 import { WhyUs } from './globals/WhyUs'
@@ -34,7 +38,7 @@ export default buildConfig({
       titleSuffix: ' — 祈聿教育後台',
     },
   },
-  collections: [Users, Media],
+  collections: [Users, Media, Teachers, Testimonials, Posts, Resources],
   globals: [SiteSettings, Hero, WhyUs, Process, Courses, TeacherScreening, Faq, Cta],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

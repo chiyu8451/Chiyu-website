@@ -6,20 +6,28 @@ import WhyUs from '../../components/home/WhyUs'
 import Process from '../../components/home/Process'
 import Courses from '../../components/home/Courses'
 import Teachers from '../../components/home/Teachers'
+import Testimonials from '../../components/home/Testimonials'
+import FounderTeaser from '../../components/home/FounderTeaser'
+import FeaturedPosts from '../../components/home/FeaturedPosts'
 import Faq from '../../components/home/Faq'
 import Cta from '../../components/home/Cta'
 import Footer from '../../components/home/Footer'
 
 export const dynamic = 'force-dynamic'
 
-// 取圖片網址：後台有上傳就用上傳的，沒有就用佔位圖（之後同仁從後台換成真實照片）。
 function imgUrl(media: unknown, seed: string, w = 900, h = 1100): string {
   if (media && typeof media === 'object' && 'url' in media && (media as { url?: string }).url) {
     return (media as { url: string }).url
   }
-  // 灰階佔位圖：配上區段的金色遮罩會有一致的品牌感，避免隨機彩色照的雜亂。
   return `https://picsum.photos/seed/${seed}/${w}/${h}?grayscale`
 }
+
+const NAV_LINKS = [
+  { label: '為什麼選我們', anchor: '#why' },
+  { label: '師資陣容', anchor: '/teachers' },
+  { label: '文章', anchor: '/blog' },
+  { label: 'FAQ', anchor: '/faq' },
+]
 
 export default async function HomePage() {
   const payload = await getPayload({ config: configPromise })
@@ -35,17 +43,22 @@ export default async function HomePage() {
     payload.findGlobal({ slug: 'cta', depth: 1 }),
   ])
 
+  const [{ docs: featuredTestimonials }, { docs: recentPosts }] = await Promise.all([
+    payload.find({ collection: 'testimonials', where: { featured: { equals: true } }, sort: 'order', limit: 6 }),
+    payload.find({ collection: 'posts', sort: '-publishedAt', limit: 3, depth: 1 }),
+  ])
+
   const formUrl = site.googleFormUrl || '#'
   const lineUrl = site.lineUrl || '#'
 
-  const courseCards = (courses.cards || []).map((c, i) => ({
+  const courseCards = (courses.cards || []).map((c: any, i: number) => ({
     ...c,
     image: imgUrl(c.image, `qiyu-course-${i}`, 800, 500),
   }))
 
   return (
     <>
-      <Nav logoText={site.logoText} navLinks={site.navLinks} navCtaLabel={site.navCtaLabel} />
+      <Nav logoText={site.logoText} navLinks={NAV_LINKS} navCtaLabel={site.navCtaLabel} formUrl={formUrl} />
 
       <Hero
         badgeText={hero.badgeText}
@@ -66,6 +79,12 @@ export default async function HomePage() {
       <Courses heading={courses.heading} subtitle={courses.subtitle} cards={courseCards} />
 
       <Teachers heading={teachers.heading} intro={teachers.intro} steps={teachers.steps} />
+
+      <Testimonials items={featuredTestimonials as any[]} />
+
+      <FounderTeaser />
+
+      <FeaturedPosts posts={recentPosts as any[]} />
 
       <Faq heading={faq.heading} intro={faq.intro} items={faq.items} />
 

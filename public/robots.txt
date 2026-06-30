@@ -1,0 +1,38 @@
+# 祈聿教育 robots.txt
+
+# Answer engine bots — let them index so the brand appears in AI answers
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# Training crawlers — allow public marketing content, block admin
+User-agent: GPTBot
+Allow: /about
+Allow: /teachers
+Allow: /blog
+Allow: /faq
+Allow: /resources
+Disallow: /admin
+
+User-agent: CCBot
+Allow: /
+
+# Google / Bing
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin
+
+User-agent: *
+Allow: /
+Disallow: /admin
+
+Sitemap: https://qiyu-edu.com/sitemap.xml
