@@ -1,7 +1,10 @@
 'use client'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Counter from './Counter'
 import { fadeUp, stagger } from './anim'
+import MagneticButton from '../ui/MagneticButton'
+import FormModal from '../ui/FormModal'
 
 type Stat = { number?: string | null; label?: string | null }
 
@@ -26,6 +29,7 @@ export default function Hero({
   stats?: Stat[] | null
   formUrl: string
 }) {
+  const [formOpen, setFormOpen] = useState(false)
   return (
     <section className="hero" id="home">
       <div className="wrap">
@@ -46,10 +50,10 @@ export default function Hero({
               {subtitle}
             </motion.p>
             <motion.div className="hero-btns" variants={fadeUp}>
-              <a href={formUrl} className="btn-fill">
+              <MagneticButton className="btn-fill" onClick={() => setFormOpen(true)}>
                 {primaryCtaLabel}
                 <i className="ti ti-arrow-right" />
-              </a>
+              </MagneticButton>
               <a href="#why" className="btn-ghost">
                 {secondaryCtaLabel}
               </a>
@@ -80,6 +84,7 @@ export default function Hero({
           </motion.div>
         </div>
       </div>
+      <FormModal open={formOpen} onClose={() => setFormOpen(false)} formUrl={formUrl} />
     </section>
   )
 }

@@ -331,7 +331,8 @@ h1,h2{font-family:'Noto Serif TC',serif;font-weight:700;letter-spacing:-.01em;li
 
 /* ── TESTIMONIALS ── */
 .testimonials-sec{padding:96px 0;background:var(--bg2)}
-.testimonials-track{display:flex;gap:24px;padding-bottom:16px;cursor:grab;user-select:none}
+.testimonials-viewport{overflow:hidden;cursor:grab}
+.testimonials-track{display:flex;gap:24px;padding-bottom:16px;user-select:none;width:max-content}
 .tcard{min-width:300px;max-width:340px;padding:28px;border-radius:var(--r);flex-shrink:0}
 .tcard-stars{color:var(--gold);font-size:16px;margin-bottom:12px;letter-spacing:2px}
 .tcard-content{font-size:15px;color:var(--ink);line-height:1.7;margin:0 0 18px;font-style:italic}

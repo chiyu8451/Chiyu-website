@@ -1,4 +1,5 @@
 'use client'
+import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { viewportOnce } from '../home/anim'
@@ -51,8 +52,6 @@ function LexicalNode({ node }: { node: any }): React.ReactNode {
 function LexicalContent({ nodes }: { nodes: any[] }) {
   return <>{(nodes || []).map((n, i) => <LexicalNode key={i} node={n} />)}</>
 }
-
-import React from 'react'
 
 type Post = {
   id: string; title?: string | null; slug?: string | null; excerpt?: string | null

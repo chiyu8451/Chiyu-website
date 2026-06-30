@@ -48,7 +48,7 @@ export default function MagneticButton({
       {href ? (
         <a href={href} className={className}>{children}</a>
       ) : (
-        <button className={className} onClick={onClick}>{children}</button>
+        <button type="button" className={className} onClick={onClick}>{children}</button>
       )}
     </motion.div>
   )
