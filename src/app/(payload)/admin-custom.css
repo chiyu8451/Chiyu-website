@@ -1,0 +1,45 @@
+/*
+ * 祈聿教育後台品牌化（克制版）
+ * 只把「重點色 / 主要按鈕」換成品牌金，刻意不動 Payload 的灰階(elevation)系統，
+ * 以保留原本良好的對比與可讀性。目的：讓後台一眼是「祈聿」，但不破壞可用性。
+ */
+
+:root {
+  --qiyu-gold: #c9a84c;
+  --qiyu-gold-deep: #b2912f;
+  --qiyu-gold-ink: #937214;
+}
+
+/* 主要動作按鈕（儲存、發佈、建立）→ 品牌金 */
+.btn--style-primary .btn__content,
+.btn--style-primary {
+  background-color: var(--qiyu-gold) !important;
+  border-color: var(--qiyu-gold) !important;
+  color: #241c06 !important;
+}
+.btn--style-primary:hover,
+.btn--style-primary:hover .btn__content {
+  background-color: var(--qiyu-gold-deep) !important;
+  border-color: var(--qiyu-gold-deep) !important;
+}
+
+/* 作用中導覽、群組指示、可點連結 → 品牌金文字（維持足夠對比） */
+.nav__link:hover,
+.nav__link--active,
+.nav-group__toggle:hover {
+  color: var(--qiyu-gold-ink) !important;
+}
+
+/* 文字輸入框 focus 外框 → 品牌金，視覺更一致 */
+.field-type input:focus,
+.field-type textarea:focus,
+.field-type .rs__control--is-focused {
+  border-color: var(--qiyu-gold) !important;
+  box-shadow: 0 0 0 1px var(--qiyu-gold) !important;
+}
+
+/* 登入頁標題下方加一條品牌金線，弱化「這是 Payload」的感覺 */
+.login__brand,
+.login__wrap h1 {
+  position: relative;
+}

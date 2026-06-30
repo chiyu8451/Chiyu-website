@@ -7,6 +7,7 @@ import Nav from '../../../../components/home/Nav'
 import Footer from '../../../../components/home/Footer'
 import PostContent from '../../../../components/blog/PostContent'
 import JsonLd from '../../../../components/ui/JsonLd'
+import { NAV_LINKS } from '../../../../config/nav'
 
 export const dynamic = 'force-dynamic'
 
@@ -33,13 +34,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
   }
 }
-
-const NAV_LINKS = [
-  { label: '首頁', anchor: '/' },
-  { label: '師資陣容', anchor: '/teachers' },
-  { label: '文章', anchor: '/blog' },
-  { label: 'FAQ', anchor: '/faq' },
-]
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params

@@ -4,6 +4,7 @@ import configPromise from '@payload-config'
 import Nav from '../../../components/home/Nav'
 import Footer from '../../../components/home/Footer'
 import PostGrid from '../../../components/blog/PostGrid'
+import { NAV_LINKS } from '../../../config/nav'
 
 export const dynamic = 'force-dynamic'
 
@@ -16,13 +17,6 @@ export const metadata: Metadata = {
     type: 'website',
   },
 }
-
-const NAV_LINKS = [
-  { label: '首頁', anchor: '/' },
-  { label: '師資陣容', anchor: '/teachers' },
-  { label: '文章', anchor: '/blog' },
-  { label: 'FAQ', anchor: '/faq' },
-]
 
 export default async function BlogPage() {
   const payload = await getPayload({ config: configPromise })

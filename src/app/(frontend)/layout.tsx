@@ -2,6 +2,7 @@ import React from 'react'
 import type { Metadata } from 'next'
 import './globals.css'
 import JsonLd from '../../components/ui/JsonLd'
+import LivePreview from '../../components/LivePreview'
 
 const BASE = process.env.NEXT_PUBLIC_SERVER_URL || 'https://qiyu-edu.com'
 
@@ -55,7 +56,10 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
           href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <LivePreview />
+        {children}
+      </body>
     </html>
   )
 }

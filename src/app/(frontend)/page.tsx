@@ -12,6 +12,7 @@ import FeaturedPosts from '../../components/home/FeaturedPosts'
 import Faq from '../../components/home/Faq'
 import Cta from '../../components/home/Cta'
 import Footer from '../../components/home/Footer'
+import { NAV_LINKS } from '../../config/nav'
 
 export const dynamic = 'force-dynamic'
 
@@ -21,13 +22,6 @@ function imgUrl(media: unknown, seed: string, w = 900, h = 1100): string {
   }
   return `https://picsum.photos/seed/${seed}/${w}/${h}?grayscale`
 }
-
-const NAV_LINKS = [
-  { label: '為什麼選我們', anchor: '#why' },
-  { label: '師資陣容', anchor: '/teachers' },
-  { label: '文章', anchor: '/blog' },
-  { label: 'FAQ', anchor: '/faq' },
-]
 
 export default async function HomePage() {
   const payload = await getPayload({ config: configPromise })

@@ -5,6 +5,7 @@ import Nav from '../../../components/home/Nav'
 import Footer from '../../../components/home/Footer'
 import FaqPageContent from '../../../components/home/FaqPageContent'
 import JsonLd from '../../../components/ui/JsonLd'
+import { NAV_LINKS } from '../../../config/nav'
 
 export const dynamic = 'force-dynamic'
 
@@ -16,13 +17,6 @@ export const metadata: Metadata = {
     description: '家長最常問的問題，這裡都有解答。',
   },
 }
-
-const NAV_LINKS = [
-  { label: '首頁', anchor: '/' },
-  { label: '師資陣容', anchor: '/teachers' },
-  { label: '文章', anchor: '/blog' },
-  { label: 'FAQ', anchor: '/faq' },
-]
 
 export default async function FaqPage() {
   const payload = await getPayload({ config: configPromise })

@@ -31,11 +31,30 @@ const db = process.env.DATABASE_URI
   ? postgresAdapter({ pool: { connectionString: process.env.DATABASE_URI } })
   : sqliteAdapter({ client: { url: `file:${path.resolve(dirname, '../qiyu.db')}` } })
 
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
+
 export default buildConfig({
   admin: {
     user: Users.slug,
     meta: {
       titleSuffix: ' — 祈聿教育後台',
+    },
+    // 即時預覽：在後台編輯任何區段／文章／老師時，右側直接看到對應的前端畫面，
+    // 存檔後預覽自動刷新。讓非技術同仁所見即所得。
+    livePreview: {
+      breakpoints: [
+        { label: '手機', name: 'mobile', width: 390, height: 844 },
+        { label: '平板', name: 'tablet', width: 768, height: 1024 },
+        { label: '桌機', name: 'desktop', width: 1440, height: 900 },
+      ],
+      url: ({ data, collectionConfig, globalConfig }) => {
+        if (collectionConfig?.slug === 'posts') return `${serverUrl}/blog/${data?.slug ?? ''}`
+        if (collectionConfig?.slug === 'teachers') return `${serverUrl}/teachers/${data?.slug ?? ''}`
+        // 其餘（首頁各區段 globals、家長評語）都呈現在首頁
+        return `${serverUrl}/`
+      },
+      collections: ['posts', 'teachers', 'testimonials'],
+      globals: ['hero', 'why-us', 'process', 'courses', 'teacher-screening', 'faq', 'cta', 'site-settings'],
     },
   },
   collections: [Users, Media, Teachers, Testimonials, Posts, Resources],

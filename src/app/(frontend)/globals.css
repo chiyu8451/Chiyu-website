@@ -1,5 +1,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+/* 錨點跳轉時，讓區段標題停在固定導覽列下方而非被蓋住 */
+section[id]{scroll-margin-top:96px}
 
 :root{
   /* 淺色奶油主視覺 */

@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import Nav from '../../../../components/home/Nav'
 import Footer from '../../../../components/home/Footer'
 import TeacherProfile from '../../../../components/teachers/TeacherProfile'
+import { NAV_LINKS } from '../../../../config/nav'
 
 export const dynamic = 'force-dynamic'
 
@@ -50,12 +51,7 @@ export default async function TeacherPage({ params }: Props) {
 
   return (
     <>
-      <Nav logoText="祈聿教育" navLinks={[
-        { label: '首頁', anchor: '/' },
-        { label: '師資陣容', anchor: '/teachers' },
-        { label: '文章', anchor: '/blog' },
-        { label: 'FAQ', anchor: '/faq' },
-      ]} navCtaLabel="立即諮詢" />
+      <Nav logoText="祈聿教育" navLinks={NAV_LINKS} navCtaLabel="立即諮詢" />
       <main>
         <TeacherProfile teacher={teacher as any} testimonials={testimonials as any[]} />
       </main>
