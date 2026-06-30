@@ -3,7 +3,7 @@ import type { GlobalConfig } from 'payload'
 export const Faq: GlobalConfig = {
   slug: 'faq',
   label: '常見問題',
-  admin: { group: '首頁區段' },
+  admin: { group: '首頁區段', description: '常見問題區塊：首頁與獨立 /faq 頁共用同一份問答。' },
   access: { read: () => true },
   fields: [
     {

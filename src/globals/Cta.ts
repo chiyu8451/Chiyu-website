@@ -3,7 +3,7 @@ import type { GlobalConfig } from 'payload'
 export const Cta: GlobalConfig = {
   slug: 'cta',
   label: '行動呼籲 CTA',
-  admin: { group: '首頁區段' },
+  admin: { group: '首頁區段', description: '頁面最下方的行動呼籲：標題、按鈕與亮點標籤。' },
   access: { read: () => true },
   fields: [
     {

@@ -3,7 +3,7 @@ import type { GlobalConfig } from 'payload'
 export const Process: GlobalConfig = {
   slug: 'process',
   label: '服務流程',
-  admin: { group: '首頁區段' },
+  admin: { group: '首頁區段', description: '首頁「服務流程」區塊：從諮詢到正式上課的步驟。' },
   access: { read: () => true },
   fields: [
     {

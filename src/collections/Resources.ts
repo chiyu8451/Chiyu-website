@@ -7,6 +7,7 @@ export const Resources: CollectionConfig = {
     group: '內容',
     useAsTitle: 'title',
     defaultColumns: ['title', 'category', 'subject', 'level'],
+    description: '學習資源／升學攻略文章（之後會用於資源頁）。',
   },
   access: { read: () => true },
   fields: [

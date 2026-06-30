@@ -3,7 +3,7 @@ import type { GlobalConfig } from 'payload'
 export const Courses: GlobalConfig = {
   slug: 'courses',
   label: '課程類型',
-  admin: { group: '首頁區段' },
+  admin: { group: '首頁區段', description: '首頁「課程類型」區塊：國中／高中課程卡片。' },
   access: { read: () => true },
   fields: [
     {

@@ -4,7 +4,7 @@ import { iconOptions } from '../fields/iconOptions'
 export const TeacherScreening: GlobalConfig = {
   slug: 'teacher-screening',
   label: '師資篩選',
-  admin: { group: '首頁區段' },
+  admin: { group: '首頁區段', description: '首頁「師資篩選標準」區塊：老師上線前的把關流程。' },
   access: { read: () => true },
   fields: [
     {

@@ -7,6 +7,7 @@ export const Posts: CollectionConfig = {
     group: '內容',
     useAsTitle: 'title',
     defaultColumns: ['title', 'category', 'author', 'publishedAt'],
+    description: '把 Threads／IG／FB 的好文貼進來，會出現在 /blog 與首頁文章預覽。記得填英文 slug 與摘要（SEO 用）。',
   },
   access: { read: () => true },
   fields: [

@@ -3,7 +3,7 @@ import type { GlobalConfig } from 'payload'
 export const Hero: GlobalConfig = {
   slug: 'hero',
   label: '首屏 Hero',
-  admin: { group: '首頁區段' },
+  admin: { group: '首頁區段', description: '首頁最上方主視覺：主標題、按鈕、右側照片與照片上的數據條。' },
   access: { read: () => true },
   fields: [
     {

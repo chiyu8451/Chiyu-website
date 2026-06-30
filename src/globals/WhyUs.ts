@@ -4,7 +4,7 @@ import { iconOptions } from '../fields/iconOptions'
 export const WhyUs: GlobalConfig = {
   slug: 'why-us',
   label: '為什麼選我們',
-  admin: { group: '首頁區段' },
+  admin: { group: '首頁區段', description: '首頁「為什麼選我們」區塊：條列祈聿的三大價值。' },
   access: { read: () => true },
   fields: [
     {

@@ -7,6 +7,7 @@ export const Teachers: CollectionConfig = {
     group: '師資',
     useAsTitle: 'name',
     defaultColumns: ['name', 'school', 'featured', 'order'],
+    description: '新增老師後會出現在 /teachers 列表；勾選「首頁顯示」會出現在首頁。記得填英文 slug 與上傳照片。',
   },
   access: { read: () => true },
   fields: [

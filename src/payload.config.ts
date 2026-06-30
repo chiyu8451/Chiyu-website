@@ -14,6 +14,7 @@ import { Posts } from './collections/Posts'
 import { Resources } from './collections/Resources'
 import { SiteSettings } from './globals/SiteSettings'
 import { Hero } from './globals/Hero'
+import { Manifesto } from './globals/Manifesto'
 import { WhyUs } from './globals/WhyUs'
 import { Process } from './globals/Process'
 import { Courses } from './globals/Courses'
@@ -36,8 +37,14 @@ const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
 export default buildConfig({
   admin: {
     user: Users.slug,
+    // 自訂後台元件的路徑以 src 為基準（否則 importMap 會誤指到專案根目錄）。
+    importMap: { baseDir: path.resolve(dirname) },
     meta: {
       titleSuffix: ' — 祈聿教育後台',
+    },
+    // Dashboard 最上方的歡迎／操作指南，幫非技術同仁快速上手。
+    components: {
+      beforeDashboard: ['/components/admin/Welcome#default'],
     },
     // 即時預覽：在後台編輯任何區段／文章／老師時，右側直接看到對應的前端畫面，
     // 存檔後預覽自動刷新。讓非技術同仁所見即所得。
@@ -54,11 +61,11 @@ export default buildConfig({
         return `${serverUrl}/`
       },
       collections: ['posts', 'teachers', 'testimonials'],
-      globals: ['hero', 'why-us', 'process', 'courses', 'teacher-screening', 'faq', 'cta', 'site-settings'],
+      globals: ['hero', 'manifesto', 'why-us', 'process', 'courses', 'teacher-screening', 'faq', 'cta', 'site-settings'],
     },
   },
   collections: [Users, Media, Teachers, Testimonials, Posts, Resources],
-  globals: [SiteSettings, Hero, WhyUs, Process, Courses, TeacherScreening, Faq, Cta],
+  globals: [SiteSettings, Hero, Manifesto, WhyUs, Process, Courses, TeacherScreening, Faq, Cta],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

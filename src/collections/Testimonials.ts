@@ -7,6 +7,7 @@ export const Testimonials: CollectionConfig = {
     group: '師資',
     useAsTitle: 'parentName',
     defaultColumns: ['parentName', 'subject', 'featured', 'order'],
+    description: '家長／學生評語。勾選「首頁顯示」會出現在首頁輪播；填了輔導前後分數會顯示進步條。',
   },
   access: { read: () => true },
   fields: [

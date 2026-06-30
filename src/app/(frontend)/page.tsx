@@ -6,6 +6,7 @@ import WhyUs from '../../components/home/WhyUs'
 import Process from '../../components/home/Process'
 import Courses from '../../components/home/Courses'
 import Teachers from '../../components/home/Teachers'
+import Manifesto from '../../components/home/Manifesto'
 import Testimonials from '../../components/home/Testimonials'
 import FounderTeaser from '../../components/home/FounderTeaser'
 import FeaturedPosts from '../../components/home/FeaturedPosts'
@@ -26,9 +27,10 @@ function imgUrl(media: unknown, seed: string, w = 900, h = 1100): string {
 export default async function HomePage() {
   const payload = await getPayload({ config: configPromise })
 
-  const [site, hero, why, process, courses, teachers, faq, cta] = await Promise.all([
+  const [site, hero, manifesto, why, process, courses, teachers, faq, cta] = await Promise.all([
     payload.findGlobal({ slug: 'site-settings', depth: 1 }),
     payload.findGlobal({ slug: 'hero', depth: 1 }),
+    payload.findGlobal({ slug: 'manifesto', depth: 1 }),
     payload.findGlobal({ slug: 'why-us', depth: 1 }),
     payload.findGlobal({ slug: 'process', depth: 1 }),
     payload.findGlobal({ slug: 'courses', depth: 1 }),
@@ -71,6 +73,15 @@ export default async function HomePage() {
       <Process heading={process.heading} subtitle={process.subtitle} steps={process.steps} />
 
       <Courses heading={courses.heading} subtitle={courses.subtitle} cards={courseCards} />
+
+      <Manifesto
+        eyebrow={manifesto.eyebrow}
+        line1={manifesto.line1}
+        line2={manifesto.line2}
+        subtext={manifesto.subtext}
+        statNumber={manifesto.statNumber}
+        statLabel={manifesto.statLabel}
+      />
 
       <Teachers heading={teachers.heading} intro={teachers.intro} steps={teachers.steps} />
 
